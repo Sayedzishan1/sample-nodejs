@@ -15,21 +15,15 @@ pipeline {
                 }
             }
         }
-        
-        // stage('Run Tests') {
-        //     steps {
-        //         script {
-        //             sh 'npm test'
-        //         }
-        //     }
-        // }
-
-        stage('Deploy') {
+        stage('Build') {
             steps {
                 script {
                     sh 'npm start'
                 }
             }
+        }
+        stage('Deploy') {
+            echo 'Deploying application'
         }
     }
 }
