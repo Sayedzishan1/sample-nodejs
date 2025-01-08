@@ -2,6 +2,12 @@ pipeline {
     agent any
 
     stages {
+        stage ('Checkout'){
+            steps {
+                sh 'git checkout $BRANCH'
+                sh 'git pull origin $BRANCH'
+            }
+        }
         stage('Install Dependencies') {
             steps {
                 script {
