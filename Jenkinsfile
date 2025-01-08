@@ -4,8 +4,10 @@ pipeline {
     stages {
         stage ('Checkout'){
             steps {
-                sh 'git checkout $BRANCH'
-                sh 'git pull origin $BRANCH'
+                script {
+                    sh 'git checkout $BRANCH'
+                    sh 'git pull origin $BRANCH'
+                }         
             }
         }
         stage('Install Dependencies') {
@@ -23,7 +25,11 @@ pipeline {
             }
         }
         stage('Deploy') {
-            echo 'Deploying application'
+            steps {
+                script{
+                    echo 'Deploying application'
+                }
+            }
         }
     }
 }
