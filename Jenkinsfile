@@ -10,6 +10,17 @@ pipeline {
                 }         
             }
         }
+        stage ('SonarQube Analysis'){
+            steps {
+                script {
+                    def scannerHome = tool 'SonarScanner';
+                    withSonarQubeEnv() {
+                      sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
+                    
         stage('Install Dependencies') {
             steps {
                 script {
